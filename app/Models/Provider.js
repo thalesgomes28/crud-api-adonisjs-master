@@ -30,6 +30,10 @@ class Provider extends Model {
    *
    * @return {Object}
    */
+
+  static get hidden () {
+    return [ 'updated_at', 'created_at']
+}
   tokens () {
     return this.hasMany('App/Models/Token')
   }

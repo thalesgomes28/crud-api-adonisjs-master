@@ -24,11 +24,22 @@
 const Factory = use('Factory')
 const Hash = use('Hash')
 
-Factory.blueprint('App/Models/User', async (faker) => {
+/*Factory.blueprint('App/Models/User', async (faker) => {
   return {
     username: faker.username(),
     email: faker.email(),
     password: await Hash.make(faker.password()),
     permission: '2'
-  } 
+  } */
+
+  Factory.blueprint('App/Models/Provider', async (faker) => {
+    return {
+      cnpj: faker.username(),
+      address: faker.email(),
+      phone_number: await Hash.make(faker.password()),
+      user_id: Math.floor(Math.random() * 100)+1, 
+    } 
+
+
+
 })

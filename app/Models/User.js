@@ -28,30 +28,39 @@ class User extends Model {
    *
    * @return {Object}
    */
+
+
+  static get hidden () {
+    return ['password', 'updated_at', 'created_at']
+}
   
   tokens () {
     return this.hasMany('App/Models/Token')
   }
 
-  provider(){
+  provider() {
     return this.hasOne('App/Models/Provider')
   }
 
-  providers_insurance(){
+  providers_insurance() {
     return this.manyThrough('App/Models/Provider', 'insurance')
   }
 
-  providers_customer(){
+  providers_customer() {
     return this.manyThrough('App/Models/Provider','customer')
   }
 
-  customer(){
+  customer() {
     return this.hasOne('App/Models/Customer')
   }
   
-  customers_insurance(){
+  customers_insurance() {
     return this.manyThrough('App/Models/Customer', 'insurance')
   }
+  images() {
+    return this.hasOne('App/Models/Image')
+  }
+
 }
 
 module.exports = User

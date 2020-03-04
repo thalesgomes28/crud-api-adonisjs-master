@@ -7,6 +7,13 @@ const Customer = use("App/Models/Customer")
 /**
  * Resourceful controller for interacting with customers
  */
+function magic(params) {
+
+  var userString = JSON.stringify( params ) //Mágica
+  var userJson = JSON.parse(userString)
+  return ( userJson)
+}
+
 class CustomerController {
   /**
    * Show a list of all customers.
@@ -119,6 +126,16 @@ class CustomerController {
     let vetor = [ativos, total]
     return (vetor)
   }
+
+  async listCustomer ({ params }) {
+    console.log(params)
+     let users = await Customer.query().with('user').select('*').where('provider_id', params.id).fetch();
+   
+     var listJs = magic(users);     
+    
+     return (listJs)
+   }
+
 }
 
 module.exports = CustomerController

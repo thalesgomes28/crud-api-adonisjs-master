@@ -27,9 +27,10 @@ Route.get('/userID/:email', 'UserController.getID')
 /**
  * Listar Usuários:
  */
-
+Route.get('listCustomer/:id', 'CustomerController.listCustomer')
+Route.get('/listProvider', 'ProviderController.listProvider')
 Route.get('/listUser', 'UserController.index')
-Route.get('/listProvider', 'ProviderController.index')
+//Route.get('/listProvider', 'ProviderController.index')
 Route.get('/listCustomer', 'CustomerController.index')
 Route.get('/listInsurance', 'InsuranceController.index')
 
@@ -64,3 +65,9 @@ Route.get('/countUser', 'UserController.count')
 Route.get('/countProvider', 'ProviderController.count')
 Route.get('/countCustomer', 'CustomerController.count')
 Route.get('/countInsurance', 'InsuranceController.count')
+/**
+ * Upload de imagens
+ */
+
+Route.get('images/:path', 'ImageController.show')//.middleware('auth')
+Route.post('properties/:id/images', 'ImageController.store')//.middleware('auth')

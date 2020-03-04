@@ -29,6 +29,11 @@ class Customer extends Model {
    *
    * @return {Object}
    */
+
+  static get hidden () {
+    return [ 'updated_at', 'created_at']
+}
+
   tokens () {
     return this.hasMany('App/Models/Token')
   }
@@ -42,6 +47,7 @@ class Customer extends Model {
     return this.hasMany('App/Models/Insurance')
    }
 
+ 
 }
 
 module.exports = Customer

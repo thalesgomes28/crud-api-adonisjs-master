@@ -3,12 +3,16 @@
 const User = use("App/Models/User")
 const Mail = use('Mail')
 
+function magic(params) {
+
+  var userString = JSON.stringify( params ) //Mágica
+  var userJson = JSON.parse(userString)
+  return ( userJson)
+}
 
 
 
-class UserController {
-
-  
+class UserController {  
 
   async index({ response }) {
     const users = User.all()
@@ -66,7 +70,20 @@ class UserController {
 
 
   async show ({ params }) {
-    const user = await User.findOrFail(params.id)
+    //const user = await User.findOrFail(params.id)
+
+    var user = await User.findBy('id', params.id)
+    
+    if(user === null){
+      const user_username = await User.findBy('username', params.id)
+      user = user_username
+    }
+
+    if (user === null){
+      const user_email = await User.findBy('email', params.id)
+      user = user_email
+    }    
+    
 
      // carrega as informações de providers    
     switch (user.permission) {
@@ -84,6 +101,7 @@ class UserController {
       default:
         break;
     }   
+    await user.load('images')
 
     var userString = JSON.stringify( user ) //Mágica
     var userJson = JSON.parse(userString)
@@ -136,6 +154,9 @@ class UserController {
     let vetor = [ativos, total]
     return (vetor)
   }
+
+ 
+
 
 }
 

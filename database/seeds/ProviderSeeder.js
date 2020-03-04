@@ -14,15 +14,23 @@
 const Factory = use('Factory')
 const Database = use('Database')
 
-class UserSeeder {
+/*class UserSeeder {
   async run () {
     const usersArray = await Factory
     .model('App/Models/User')
-    .createMany(66)
-    console.log(usersArray);
-  }
+    .createMany(100)
+   
+  }*/
+
+  class ProviderSeeder {
+    async run () {
+      const providersArray = await Factory
+      .model('App/Models/Provider')
+      .createMany(100)
+     
+    }
   
 
 }
-
-module.exports = UserSeeder
+//module.exports = UserSeeder
+module.exports = ProviderSeeder

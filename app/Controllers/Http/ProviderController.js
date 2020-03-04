@@ -7,6 +7,15 @@ const Provider = use("App/Models/Provider")
 /**
  * Resourceful controller for interacting with providers
  */
+
+
+function magic(params) {
+
+  var userString = JSON.stringify( params ) //Mágica
+  var userJson = JSON.parse(userString)
+  return ( userJson)
+}
+
 class ProviderController {
   
   async create({ request }) {
@@ -19,6 +28,8 @@ class ProviderController {
 
   async index({ response }) {
     const providers = Provider.all()
+
+    
     
     return (providers)
   }
@@ -55,6 +66,16 @@ class ProviderController {
     let vetor = [ativos, total]
     return (vetor)
   }
+
+  async listProvider ({ params }) {
+    console.log(params)
+     let users = await Provider.query().with('user').select('*').fetch();
+   
+     var listJs = magic(users);     
+    
+     return (listJs)
+   }
+ 
 }
 
 module.exports = ProviderController

@@ -5,6 +5,10 @@ const Model = use('Model')
 
 class Insurance extends Model {
 
+  static get hidden () {
+    return ['updated_at', 'created_at']
+}
+
     provider(){
         return this.hasMany('App/Models/Provider')
       }
